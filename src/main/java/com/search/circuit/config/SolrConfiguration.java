@@ -2,9 +2,11 @@ package com.search.circuit.config;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 
@@ -12,10 +14,13 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 @EnableSolrRepositories(basePackages = "com.search.circuit.repository")
 @ComponentScan
 public class SolrConfiguration {
-    private static final String SOLR_URL = "http://localhost:8983/solr";
+    @Autowired
+    private Environment env;
+
     @Bean
     public SolrClient solrClient() {
-        return new HttpSolrClient.Builder(SOLR_URL).build();
+        String solrHost = env.getProperty("spring.data.solr.host");
+        return new HttpSolrClient.Builder(solrHost).build();
     }
 
     @Bean
