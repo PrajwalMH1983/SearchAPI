@@ -1,0 +1,7 @@
+com/search/circuit/entity/Video.class
+com/search/circuit/service/VideoService.class
+com/search/circuit/utils/SolrConfiguration.class
+com/search/circuit/service/VideoServiceImpl.class
+com/search/circuit/repository/VideoRepository.class
+com/search/circuit/DemoApplication.class
+com/search/circuit/controller/VideoController.class
